@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>ReMind</title>
+  <link rel="stylesheet" href="/start.css" />
+</head>
+<body>
+  <div class="wrap">
+    <form class="login-box" action="/login" method="post" autocomplete="off" novalidate>
+      <div class="icon">α</div>
+      <h2>ReMind</h2>
+
+      <input name="id" placeholder="아이디" required autocomplete="username" />
+      <input type="password" name="password" placeholder="비밀번호" required autocomplete="current-password" />
+
+      <button type="submit" class="login-btn">로그인</button>
+
+      <p class="bottom-text">계정이 없으신가요? <a href="/register">회원가입</a></p>
+    </form>
+  </div>
+</body>
+</html>

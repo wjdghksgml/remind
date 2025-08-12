@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>글 수정 - ReMind</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <h1>글 수정하기</h1>
+  <form action="/update/<%= index %>" method="POST">
+    <textarea name="content" required><%= post.content %></textarea>
+    <button type="submit">수정</button>
+  </form>
+  <p><a href="/">메인으로</a></p>
+</body>
+</html>

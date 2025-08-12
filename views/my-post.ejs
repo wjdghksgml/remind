@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>내가 쓴 글 리스트 - ReMind</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <h1><%= currentUser.nickname %>님의 글 리스트</h1>
+
+  <% if(posts.length === 0) { %>
+    <p>작성한 글이 없습니다.</p>
+  <% } else { %>
+    <ul>
+      <% posts.forEach(({post, idx}) => { %>
+        <li>
+          <a href="/edit/<%= idx %>"><%= post.content.length > 20 ? post.content.substr(0,20) + '...' : post.content %></a>
+          <a href="/delete/<%= idx %>" style="color:red; margin-left:1rem;">삭제</a>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+  <p><a href="/">메인으로</a></p>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>내 정보 수정 - ReMind</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <h1>내 정보 수정</h1>
+
+  <% if(error) { %>
+    <p class="error"><%= error %></p>
+  <% } %>
+
+  <form action="/my-info" method="POST">
+    <input type="text" name="nickname" value="<%= user.nickname %>" placeholder="별명" required />
+    <input type="text" name="organization" value="<%= user.organization %>" placeholder="소속" required />
+    <button type="submit">수정</button>
+  </form>
+  <p><a href="/">메인으로</a></p>
+</body>
+</html>

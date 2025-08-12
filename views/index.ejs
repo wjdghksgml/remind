@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>💡 ReMind</title>
+  <link rel="stylesheet" href="/index.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <h1>💡 ReMind</h1>
+
+  <% if (currentUser) { %>
+    <!-- 사용자 아이콘 및 드롭다운 -->
+    <div class="user-menu">
+      <i class="fa-solid fa-user icon" onclick="toggleDropdown()"></i>
+      <div class="dropdown" id="userDropdown">
+        <a href="/my-info">내 정보 수정</a>
+        <a href="/my-posts">내가 쓴 글 리스트</a>
+        <a href="/logout">로그아웃</a>
+      </div>
+    </div>
+
+    <!-- 포스트잇 작성 폼 -->
+    <form id="postForm" action="/add" method="POST">
+      <textarea name="content" placeholder="포스트잇 내용" required></textarea>
+      <button type="submit">추가</button>
+    </form>
+  <% } %>
+
+  <div class="posts">
+    <% posts.forEach((post, index) => { %>
+      <div class="post-it">
+        <%= post.content.replace(/\n/g, '<br>') %>
+        <small>- <%= post.nickname %></small>
+
+        <% if(currentUser && post.userId === currentUser.id) { %>
+          <i class="fa-solid fa-ellipsis-vertical menu-btn" onclick="togglePostMenu('<%= index %>')"></i>
+          <div class="post-menu" id="postMenu-<%= index %>">
+            <a href="/edit/<%= index %>">글 수정</a>
+            <a href="/delete/<%= index %>">글 삭제</a>
+          </div>
+        <% } %>
+      </div>
+    <% }) %>
+  </div>
+
+  <script>
+    function toggleDropdown() {
+      const el = document.getElementById('userDropdown');
+      el.classList.toggle('open');
+    }
+    function togglePostMenu(i) {
+      const el = document.getElementById('postMenu-' + i);
+      el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+    }
+  </script>
+</body>
+</html>

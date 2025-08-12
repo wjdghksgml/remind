@@ -1,0 +1,107 @@
+/* ===== 배경 그라디언트 애니메이션 ===== */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(270deg, #fff7e6, #ffd09d, #ffc46c, #ffd09d, #fff7e6);
+  background-size: 1000% 100%;
+  animation: gradientShift 15s ease infinite;
+  min-height: 100vh;
+  padding: 24px;
+  margin: 0;
+  font-family: 'Pretendard', sans-serif;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ===== 폼 컨테이너 ===== */
+form {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 8px 30px rgba(255, 163, 26, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 300px;
+  backdrop-filter: blur(6px);
+}
+
+/* ===== 제목 스타일 ===== */
+h2 {
+  text-align: center;
+  font-size: 26px;
+  color: #b85c00;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 2px rgba(255, 215, 150, 0.5);
+}
+
+/* ===== 입력 필드 ===== */
+input {
+  padding: 12px 15px;
+  border: none;
+  border-radius: 30px;
+  font-size: 14px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s;
+}
+
+input:focus {
+  box-shadow: 0 0 8px rgba(255, 163, 26, 0.5);
+}
+
+/* ===== 버튼 ===== */
+button {
+      /* 기본 브라우저 버튼 스타일 제거 (중요) */
+      all: unset;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+
+      /* 레이아웃 */
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 12px 16px;
+      margin-top: 8px;
+      border-radius: 28px;
+      cursor: pointer;
+      user-select: none;
+
+      /* 색상과 그림자 (우선순위 높임) */
+	  background: linear-gradient(270deg, #fff7e6, #ffd3a4, #ffd89d, #ffd3a4, #fff7e6);
+	  background-size: 1000% 100%; /* 색이 부드럽게 넘어가도록 크게 설정 */
+	  animation: gradientShift 30s ease infinite; /* 천천히 색 전환 */ 
+      font-weight: 800 !important;
+      font-size: 15px;
+	  color: white;
+      box-shadow: 0 8px 22px rgba(255, 140, 0, 0.18);
+      text-align: center;
+      transition: transform .08s ease, box-shadow .12s ease, filter .12s ease;
+
+	  	  /* 종이 질감 패턴 추가 */
+  	  background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png"), linear-gradient(270deg, #fff7e6, #ffd09d, #ffc46c, #ffd09d, #fff7e6);
+  	  background-size: 300px 300px, 1000% 100%;
+  	  background-blend-mode: overlay;
+}
+
+button:hover {
+  background: linear-gradient(to right, #ffae42, #ff8c1a);
+}
+
+button:active {
+  transform: scale(0.98);
+}

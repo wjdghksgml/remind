@@ -1,0 +1,194 @@
+    /* 폰트 임포트 */
+    @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
+    @import url("https://cdn.jsdelivr.net/gh/leetaewook/gmarket-sans-dynamic-subset/GmarketSans.css");
+
+    /* 페이지 전체 레이아웃 */
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; font-family: Pretendard, "Gmarket Sans", sans-serif; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+	  background: linear-gradient(270deg, #fff7e6, #ffd3a4, #ffd89d, #ffd3a4, #fff7e6);
+	  background-size: 1000% 100%; /* 색이 부드럽게 넘어가도록 크게 설정 */
+	  animation: gradientShift 30s ease infinite; /* 천천히 색 전환 */  
+	  min-height: 100vh;
+      padding: 24px;
+
+	  /* 종이 질감 패턴 추가 */
+  	  background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png"), linear-gradient(270deg, #fff7e6, #ffd09d, #ffc46c, #ffd09d, #fff7e6);
+  	  background-size: 300px 300px, 1000% 100%;
+  	  background-blend-mode: overlay;
+    }
+
+	/* 색이 옆으로 이동하는 애니메이션 */
+	@keyframes gradientShift {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+	}
+
+    /* 컨테이너 */
+    .wrap {
+      width: 100%;
+      max-width: 360px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .title {
+      align-self: flex-start;
+      margin-left: 4px;
+    }
+    .title h2 {
+      margin: 0;
+      font-size: clamp(20px, 3.2vw, 28px);
+      color: #bf360c; /* 진한 오렌지 */
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+    }
+
+    /* 로그인 박스 */
+    .login-box {
+      width: 100%;
+      background: linear-gradient(180deg, rgba(255, 244, 229, 0.9), rgba(255, 236, 214, 0.9));
+      border-radius: 18px;
+      padding: 36px 28px 28px;
+      box-shadow: 0 30px 60px rgba(255, 152, 0, 0.12);
+      position: relative;
+      overflow: visible;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+	  	  /* 종이 질감 패턴 추가 */
+  	  background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png"), linear-gradient(270deg, #fff7e6, #ffd09d, #ffc46c, #ffd09d, #fff7e6);
+  	  background-size: 300px 300px, 1000% 100%;
+  	  background-blend-mode: overlay;
+    }
+
+    /* 아이콘(원형) */
+    .login-box .icon {
+      position: absolute;
+      top: -36px;
+      left: calc(50% - 36px);
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: #fff;
+      background: linear-gradient(135deg, #ffa726, #ff8f00);
+      box-shadow: 0 8px 18px rgba(255, 140, 0, 0.25);
+      font-weight: 800;
+    }
+
+    .login-box h3 {
+      margin-top: 46px;
+      margin-bottom: 18px;
+      color: #6d2a00;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    /* 입력창 스타일 */
+    .login-box input {
+      width: 100%;
+      padding: 12px 16px;
+      margin-bottom: 12px;
+      border-radius: 28px;
+      border: 1px solid rgba(0,0,0,0.06);
+      background: rgba(255,255,255,0.95);
+      font-size: 14px;
+      outline: none;
+      transition: box-shadow .12s, transform .06s;
+    }
+
+    .login-box input:focus {
+      box-shadow: 0 6px 18px rgba(255, 152, 0, 0.12);
+      transform: translateY(-1px);
+    }
+
+    /* 버튼 — 핵심: 기본 스타일 완전 초기화 및 높은 우선 적용 */
+    .login-box .login-btn {
+      /* 기본 브라우저 버튼 스타일 제거 (중요) */
+      all: unset;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+
+      /* 레이아웃 */
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 12px 16px;
+      margin-top: 8px;
+      border-radius: 28px;
+      cursor: pointer;
+      user-select: none;
+
+      /* 색상과 그림자 (우선순위 높임) */
+	  background: linear-gradient(270deg, #fff7e6, #ffd3a4, #ffd89d, #ffd3a4, #fff7e6);
+	  background-size: 1000% 100%; /* 색이 부드럽게 넘어가도록 크게 설정 */
+	  animation: gradientShift 30s ease infinite; /* 천천히 색 전환 */ 
+      font-weight: 800 !important;
+      font-size: 15px;
+	  color: white;
+      box-shadow: 0 8px 22px rgba(255, 140, 0, 0.18);
+      text-align: center;
+      transition: transform .08s ease, box-shadow .12s ease, filter .12s ease;
+
+	  	  /* 종이 질감 패턴 추가 */
+  	  background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png"), linear-gradient(270deg, #fff7e6, #ffd09d, #ffc46c, #ffd09d, #fff7e6);
+  	  background-size: 300px 300px, 1000% 100%;
+  	  background-blend-mode: overlay;
+    }
+
+    /* 호버/포커스/액티브 */
+    .login-box .login-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.02);
+  	  background: linear-gradient(to right, #ffae42, #ff8c1a);
+    }
+
+    .login-box .login-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 6px 18px rgba(255, 140, 0, 0.14);
+    }
+
+    .login-box .login-btn:focus {
+      outline: none;
+      box-shadow: 0 0 0 5px rgba(255, 167, 38, 0.16);
+    }
+
+    /* 하단 텍스트 */
+    .login-box .bottom-text {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #6d3a1a;
+    }
+    .login-box .bottom-text a {
+      color: #bf360c;
+      font-weight: 700;
+      text-decoration: none;
+      margin-left: 6px;
+    }
+
+    /* 반응형 여유 */
+    @media (max-width: 420px) {
+      .login-box { padding: 30px 18px 22px; }
+      .login-box .icon { left: calc(50% - 30px); width: 60px; height: 60px; top: -30px; font-size: 28px; }
+    }
