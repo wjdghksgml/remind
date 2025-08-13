@@ -11,6 +11,10 @@
       <div class="icon">α</div>
       <h2>ReMind</h2>
 
+      <% if (error) { %>
+        <p style="color:red; font-size:14px;"><%= error %></p>
+      <% } %>
+
       <input name="id" placeholder="아이디" required autocomplete="username" />
       <input type="password" name="password" placeholder="비밀번호" required autocomplete="current-password" />
 
