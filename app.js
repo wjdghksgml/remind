@@ -39,15 +39,21 @@ function requireAuth(req, res, next) {
 // ===== 라우팅 =====
 
 // 루트: 로그인 안 했으면 /login 으로
-app.get("/", requireAuth, async (req, res) => {
-  // Firestore에서 포스트들 로드 (최신순)
-  const snap = await db.collection("posts").orderBy("createdAt", "desc").get();
-  const posts = snap.docs.map((d) => d.data());
+app.get('/', async (req, res) => {
+  if (!req.session.user) return res.redirect('/login');
 
-  res.render("index", {
-    currentUser: req.session.user, // { id, nickname, organization? }
-    posts,
-  });
+  try {
+    const postsSnapshot = await db.collection('posts').orderBy('createdAt', 'desc').get();
+    const posts = postsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+    res.render('index', {
+      currentUser: req.session.user,
+      posts
+    });
+  } catch (error) {
+    console.error('게시글 불러오기 실패:', error);
+    res.render('index', { currentUser: req.session.user, posts: [] });
+  }
 });
 
 // 회원가입 페이지
@@ -148,27 +154,32 @@ app.get("/logout", (req, res) => {
 });
 
 // 포스트잇 추가 (로그인 필요)
-app.post("/add", requireAuth, async (req, res) => {
+app.post('/add', async (req, res) => {
+  if (!req.session.user) return res.redirect('/login');
+
+  const { content } = req.body;
+  const userId = req.session.user.id;
+  const nickname = req.session.user.nickname;
+
+  if (!content || content.trim() === '') {
+    return res.status(400).send('내용을 입력해주세요.');
+  }
+
   try {
-    const { content } = req.body;
-    if (!content || !content.trim()) {
-      return res.send("<script>alert('내용을 입력하세요.');history.back();</script>");
-    }
-
-    const post = {
+    await db.collection('posts').add({
       content,
-      nickname: req.session.user.nickname,
-      userId: req.session.user.id,
-      createdAt: new Date(),
-    };
+      userId,
+      nickname,
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
 
-    await db.collection("posts").add(post);
-    return res.redirect("/");
-  } catch (err) {
-    console.error("포스트 추가 오류:", err);
-    return res.status(500).send("<script>alert('포스트 추가 중 오류가 발생했습니다.');history.back();</script>");
+    res.redirect('/');
+  } catch (error) {
+    console.error('Firestore 저장 실패:', error);
+    res.status(500).send('서버 오류가 발생했습니다.');
   }
 });
+
 
 // 서버 시작
 app.listen(PORT, () => {
